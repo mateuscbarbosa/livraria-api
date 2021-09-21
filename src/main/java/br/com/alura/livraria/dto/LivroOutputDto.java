@@ -12,5 +12,5 @@ public class LivroOutputDto {
 	private String titulo;
 	private LocalDate dataLacamento;
 	private int numeroPaginas;
-	private AutorOutputIdNomeDto autor;
+	private AutorOutputDto autor;
 }
