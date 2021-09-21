@@ -2,7 +2,6 @@ package br.com.alura.livraria.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -24,7 +23,6 @@ public class AutorService {
 
 	public void cadastrar(AutorFormDto autorFormDto) {
 		Autor autor = modelMapper.map(autorFormDto, Autor.class);
-		autor.setIdAutor(new Random().nextInt(99));
 		autores.add(autor);
 	}
 
