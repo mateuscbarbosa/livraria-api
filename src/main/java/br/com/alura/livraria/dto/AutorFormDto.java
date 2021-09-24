@@ -6,6 +6,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,8 +21,9 @@ public class AutorFormDto {
 	@NotBlank
 	private String email;
 	
-	@PastOrPresent
 	@NotNull
+	@PastOrPresent
+	@JsonFormat(pattern="dd/MM/yyyy")
 	private LocalDate dataNascimento;
 	
 	@NotBlank

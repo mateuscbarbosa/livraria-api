@@ -9,7 +9,8 @@ import javax.validation.constraints.PastOrPresent;
 
 import org.hibernate.validator.constraints.Length;
 
-import br.com.alura.livraria.modelo.Autor;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,6 +24,7 @@ public class LivroFormDto {
 	
 	@NotNull
 	@PastOrPresent
+	@JsonFormat(pattern="dd/MM/yyyy")
 	private LocalDate dataLacamento;
 	
 	@NotNull
