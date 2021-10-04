@@ -15,7 +15,7 @@ import lombok.ToString;
 @ToString
 public class Autor {
 
-	private int idAutor;
+	private Long idAutor;
 	private String nome;
 	private String email;
 	private LocalDate dataNascimento;

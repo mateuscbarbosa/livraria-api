@@ -15,6 +15,7 @@ import lombok.ToString;
 @ToString
 public class Livro {
 
+	private Long id;
 	private String titulo;
 	private LocalDate dataLacamento;
 	private int numeroPaginas;

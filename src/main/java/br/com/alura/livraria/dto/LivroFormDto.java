@@ -31,6 +31,6 @@ public class LivroFormDto {
 	@Min(100)
 	private int numeroPaginas;
 	
-//	@NotNull
-//	private Autor autor;
+	@NotNull
+	private Long idAutor;
 }

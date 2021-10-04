@@ -23,7 +23,18 @@ public class AutorService {
 
 	public void cadastrar(AutorFormDto autorFormDto) {
 		Autor autor = modelMapper.map(autorFormDto, Autor.class);
+		Long ultimo = Long.valueOf(autores.size()+1);
+		autor.setIdAutor(ultimo);
+		System.out.println(autor.getIdAutor());
 		autores.add(autor);
+	}
+	
+	public Autor buscaPorId(Long id) {
+		return autores
+				.stream()
+				.filter(autor -> autor.getIdAutor()==id)
+				.findFirst()
+				.orElseThrow(() -> new IllegalArgumentException("Autor não encontrado."));	
 	}
 
 }
