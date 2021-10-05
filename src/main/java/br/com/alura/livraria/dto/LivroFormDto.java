@@ -26,8 +26,8 @@ public class LivroFormDto {
 	@NotNull
 	@PastOrPresent
 	@JsonFormat(pattern="dd/MM/yyyy")
-	@JsonAlias("data_lacamento")
-	private LocalDate dataLacamento;
+	@JsonAlias("data_lancamento")
+	private LocalDate dataLancamento;
 	
 	@NotNull
 	@Min(100)
@@ -35,6 +35,6 @@ public class LivroFormDto {
 	private Integer numeroPaginas;
 	
 	@NotNull
-	@JsonAlias("id_autor")
+	@JsonAlias("autor_id")
 	private Long idAutor;
 }

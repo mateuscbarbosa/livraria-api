@@ -14,7 +14,7 @@ public class LivroOutputDto {
 	private String titulo;
 	
 	@JsonFormat(pattern="dd/MM/yyyy")
-	private LocalDate dataLacamento;
+	private LocalDate dataLancamento;
 	private Integer numeroPaginas;
 	private AutorResumidoOutputDto autor;
 }

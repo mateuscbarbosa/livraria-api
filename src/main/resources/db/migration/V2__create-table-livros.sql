@@ -3,7 +3,7 @@ CREATE TABLE livros(
     titulo VARCHAR(250) NOT NULL,
     data_lancamento DATE NOT NULL,
     numero_paginas INT,
-    id_autor BIGINT,
-    FOREIGN KEY (id_autor) REFERENCES autores (id),
+    autor_id BIGINT,
+    FOREIGN KEY (autor_id) REFERENCES autores (id),
     PRIMARY KEY (id)
 );
