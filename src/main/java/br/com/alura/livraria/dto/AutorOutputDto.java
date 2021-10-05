@@ -11,6 +11,7 @@ import lombok.Setter;
 @Setter
 public class AutorOutputDto {
 	
+	private Long id;
 	private String nome;
 	private String email;
 	@JsonFormat(pattern="dd/MM/yyyy")

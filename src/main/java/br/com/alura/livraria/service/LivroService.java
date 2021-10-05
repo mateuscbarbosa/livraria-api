@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.alura.livraria.dto.LivroFormDto;
 import br.com.alura.livraria.dto.LivroOutputDto;
@@ -27,12 +28,14 @@ public class LivroService {
 		return livros.map(l -> modelMapper.map(l, LivroOutputDto.class));
 	}
 
-	public void cadastrar(LivroFormDto livroFormDto) {
+	@Transactional
+	public LivroOutputDto cadastrar(LivroFormDto livroFormDto) {
 		Autor autor = autorService.buscaPorId(livroFormDto.getIdAutor());
 		Livro livro = modelMapper.map(livroFormDto, Livro.class);
 		livro.setAutor(autor);
 		
 		livroRepository.save(livro);
+		return  modelMapper.map(livro, LivroOutputDto.class);
 	}
 	
 }

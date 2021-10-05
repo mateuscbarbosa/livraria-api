@@ -11,6 +11,7 @@ import lombok.Setter;
 @Setter
 public class LivroOutputDto {
 
+	private Long id;
 	private String titulo;
 	
 	@JsonFormat(pattern="dd/MM/yyyy")

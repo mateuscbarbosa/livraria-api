@@ -25,10 +25,12 @@ public class AutorService {
 	}
 
 	@Transactional
-	public void cadastrar(AutorFormDto autorFormDto) {
+	public AutorOutputDto cadastrar(AutorFormDto autorFormDto) {
 		Autor autor = modelMapper.map(autorFormDto, Autor.class);
 		
 		autorRepository.save(autor);
+		
+		return modelMapper.map(autor, AutorOutputDto.class);
 	}
 	
 	public Autor buscaPorId(Long id) {
