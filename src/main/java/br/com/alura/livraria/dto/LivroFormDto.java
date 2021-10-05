@@ -9,6 +9,7 @@ import javax.validation.constraints.PastOrPresent;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Getter;
@@ -25,12 +26,15 @@ public class LivroFormDto {
 	@NotNull
 	@PastOrPresent
 	@JsonFormat(pattern="dd/MM/yyyy")
+	@JsonAlias("data_lacamento")
 	private LocalDate dataLacamento;
 	
 	@NotNull
 	@Min(100)
-	private int numeroPaginas;
+	@JsonAlias("numero_paginas")
+	private Integer numeroPaginas;
 	
 	@NotNull
+	@JsonAlias("id_autor")
 	private Long idAutor;
 }

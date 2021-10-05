@@ -12,8 +12,9 @@ import lombok.Setter;
 public class LivroOutputDto {
 
 	private String titulo;
+	
 	@JsonFormat(pattern="dd/MM/yyyy")
 	private LocalDate dataLacamento;
-	private int numeroPaginas;
+	private Integer numeroPaginas;
 	private AutorResumidoOutputDto autor;
 }
