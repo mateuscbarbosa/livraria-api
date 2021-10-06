@@ -33,6 +33,7 @@ public class LivroService {
 		Autor autor = autorService.buscaPorId(livroFormDto.getIdAutor());
 		Livro livro = modelMapper.map(livroFormDto, Livro.class);
 		livro.setAutor(autor);
+		livro.setId(null);
 		
 		livroRepository.save(livro);
 		return  modelMapper.map(livro, LivroOutputDto.class);
