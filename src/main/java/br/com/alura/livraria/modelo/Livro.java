@@ -2,7 +2,6 @@ package br.com.alura.livraria.modelo;
 
 import java.time.LocalDate;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,14 +29,10 @@ public class Livro {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String titulo;
-	
-	@Column(name="data_lancamento")
 	private LocalDate dataLancamento;
-	
-	@Column(name="numero_paginas")
 	private Integer numeroPaginas;
 	
 	@ManyToOne
-	@JoinColumn(name="autor_id")
+	@JoinColumn(name = "autor_id")
 	private Autor autor;
 }
