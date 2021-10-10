@@ -1,0 +1,1 @@
+ALTER TABLE autores ADD UNIQUE (email)
