@@ -18,20 +18,25 @@ import org.springframework.web.util.UriComponentsBuilder;
 import br.com.alura.livraria.dto.AutorFormDto;
 import br.com.alura.livraria.dto.AutorOutputDto;
 import br.com.alura.livraria.service.AutorService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/autores")
+@Api(tags = "Autores")
 public class AutorController {
 
 	@Autowired
 	private AutorService service;
 	
 	@GetMapping
+	@ApiOperation("Lista de Autores")
 	public Page<AutorOutputDto> listar(Pageable paginacao){
 		return service.listar(paginacao);
 	}
 	
 	@PostMapping
+	@ApiOperation("Cadastro de novo Autor")
 	public ResponseEntity<AutorOutputDto> cadastrar(@RequestBody @Valid AutorFormDto AutorFormDto, UriComponentsBuilder uriBuilder) {
 		AutorOutputDto autorOutputDto = service.cadastrar(AutorFormDto);
 		
