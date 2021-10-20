@@ -59,7 +59,7 @@ public class AutorController {
 	
 	@DeleteMapping("/{id}")
 	@ApiOperation("Remover Autor selecionado")
-	public ResponseEntity<AutorOutputDto> deletar(@PathVariable @NotNull Long id){
+	public ResponseEntity<AutorOutputDto> remover(@PathVariable @NotNull Long id){
 		service.remover(id);
 		
 		return ResponseEntity.noContent().build();
