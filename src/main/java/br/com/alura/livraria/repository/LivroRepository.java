@@ -13,7 +13,7 @@ public interface LivroRepository extends JpaRepository<Livro, Long>{
 	@Query("SELECT NEW br.com.alura.livraria.dto.RelatorioLivroPorAutorOutputDto("
 			+ "a.nome, "
 			+ "COUNT(l.id), "
-			+ "ROUND((COUNT(a.nome) / (SELECT COUNT(*) FROM Livro)) *100.0,2) ) "
+			+ "(COUNT(a.nome) / (SELECT COUNT(*) FROM Livro))*1.0 ) "
 			+ "FROM Livro l "
 			+ "JOIN l.autor a "
 			+ "GROUP BY a.nome")

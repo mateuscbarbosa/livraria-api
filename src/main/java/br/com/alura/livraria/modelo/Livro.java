@@ -36,6 +36,14 @@ public class Livro {
 	@JoinColumn(name = "autor_id")
 	private Autor autor;
 
+	public Livro(String titulo, LocalDate dataLancamento, Integer numeroPaginas, Autor autor) {
+		super();
+		this.titulo = titulo;
+		this.dataLancamento = dataLancamento;
+		this.numeroPaginas = numeroPaginas;
+		this.autor = autor;
+	}
+	
 	public void atualizar(Autor autor, String titulo, Integer numeroPaginas, LocalDate dataLancamento) {
 		this.autor = autor;
 		this.titulo = titulo;
