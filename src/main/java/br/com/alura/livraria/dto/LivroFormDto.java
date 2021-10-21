@@ -6,8 +6,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
-
-import org.hibernate.validator.constraints.Length;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -20,7 +19,7 @@ import lombok.Setter;
 public class LivroFormDto {
 
 	@NotBlank
-	@Length(min=10)
+	@Size(min=10)
 	private String titulo;
 	
 	@NotNull
@@ -30,7 +29,7 @@ public class LivroFormDto {
 	private LocalDate dataLancamento;
 	
 	@NotNull
-	@Min(100)
+	@Min(value = 100, message="{livro.paginas.tamanhoMinimo}")
 	@JsonAlias("numero_paginas")
 	private Integer numeroPaginas;
 	
