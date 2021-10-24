@@ -39,8 +39,8 @@ public class AutorService {
 	public Autor buscaPorId(Long id) {
 		Autor autor = autorRepository
 				.findById(id)
-				.orElseThrow(() -> new IllegalArgumentException("Autor não encontrado"));
-		return autor;	
+				.orElseThrow(() -> new EntityNotFoundException("Autor não encontrado"));
+		return autor;
 	}
 
 	@Transactional
