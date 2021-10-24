@@ -56,7 +56,7 @@ class LivroControllerTest {
 	}
 	
 	@Test
-	void DeveriaCadastrarLivroComAutorExistente() throws Exception{
+	void deveriaCadastrarLivroComAutorExistente() throws Exception{
 		String jsonAutor ="{\"nome\": \"Um Autor Teste\","
 				+ "\"email\": \"umemailteste@email.com\","
 				+ "\"dataNascimento\": \"21/10/2021\","

@@ -42,9 +42,4 @@ class AutorServiceTest {
 		assertEquals(formDto.getMiniCurriculo(), dto.getMiniCurriculo());
 	}
 	
-	@Test
-	void naoDeveriaCadastrarUmAutorComEmailIgual() {
-		
-	}
-
 }
