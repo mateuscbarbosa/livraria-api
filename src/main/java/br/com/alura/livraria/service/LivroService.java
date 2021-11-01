@@ -21,7 +21,9 @@ public class LivroService {
 
 	@Autowired
 	private LivroRepository livroRepository;
-	private ModelMapper modelMapper = new ModelMapper();
+	
+	@Autowired
+	private ModelMapper modelMapper;
 	
 	@Autowired
 	private AutorService autorService;
