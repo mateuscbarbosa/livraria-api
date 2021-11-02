@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.com.alura.livraria.dto.UsuarioAtualizacaoFormDto;
@@ -17,19 +18,22 @@ import br.com.alura.livraria.dto.UsuarioOutputDto;
 import br.com.alura.livraria.modelo.Perfil;
 import br.com.alura.livraria.modelo.Usuario;
 import br.com.alura.livraria.repository.PerfilRepository;
-import br.com.alura.livraria.repository.UsuarioRespository;
+import br.com.alura.livraria.repository.UsuarioRepository;
 
 @Service
 public class UsuarioService {
 
 	@Autowired
-	private UsuarioRespository usuarioRepository;
+	private UsuarioRepository usuarioRepository;
 	
 	@Autowired
 	private PerfilRepository perfilRepository;
 	
 	@Autowired
 	private ModelMapper modelMapper;
+	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	public Page<UsuarioOutputDto> listar(Pageable paginacao) {
 		Page<Usuario> usuarios = usuarioRepository.findAll(paginacao);
@@ -44,7 +48,7 @@ public class UsuarioService {
 		usuario.adicionarPerfil(perfil);
 		
 		String senha = new Random().nextInt(999999) + "";
-		usuario.setSenha(senha);
+		usuario.setSenha(bCryptPasswordEncoder.encode(senha));
 		
 		usuarioRepository.save(usuario);
 				
@@ -55,7 +59,9 @@ public class UsuarioService {
 	public UsuarioOutputDto atualizar(UsuarioAtualizacaoFormDto usuarioForm) {
 		Usuario usuario = usuarioRepository.getById(usuarioForm.getId());
 		
-		usuario.atualizarInformacoes(usuarioForm.getNome(), usuarioForm.getLogin(), usuarioForm.getSenha());
+		usuario.atualizarInformacoes(usuarioForm.getNome(),
+									 usuarioForm.getLogin(),
+									 bCryptPasswordEncoder.encode(usuarioForm.getSenha()));
 		
 		return modelMapper.map(usuario, UsuarioOutputDto.class);
 	}
@@ -68,6 +74,7 @@ public class UsuarioService {
 	public UsuarioOutputDto detalhar(Long id) {
 		Usuario usuario = usuarioRepository.findById(id)
 											.orElseThrow(() -> new EntityNotFoundException());
+		
 		return modelMapper.map(usuario, UsuarioOutputDto.class);
 	}
 
