@@ -18,4 +18,6 @@ public interface LivroRepository extends JpaRepository<Livro, Long>{
 			+ "JOIN l.autor a "
 			+ "GROUP BY a.nome")
 	List<RelatorioLivroPorAutorOutputDto> relatorioLivrosPorAutor();
+	
+	boolean existsByAutorId(Long id);
 }

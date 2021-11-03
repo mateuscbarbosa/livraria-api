@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -28,6 +29,12 @@ public class TratamentoDeErros {
 				.stream()
 				.map(erro -> new Erro400OutputDto(erro.getField(), erro.getDefaultMessage()))
 				.collect(Collectors.toList());
+	}
+	
+	@ExceptionHandler(DataIntegrityViolationException.class)
+	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
+	public String tratarOutrosErros400(Exception ex) {
+		return ex.getMessage();
 	}
 	
 	@ExceptionHandler(Exception.class)

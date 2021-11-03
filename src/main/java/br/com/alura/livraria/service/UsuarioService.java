@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -42,6 +43,10 @@ public class UsuarioService {
 
 	@Transactional
 	public UsuarioOutputDto cadastrar(UsuarioFormDto usuarioForm) {
+		boolean temLoginCadastrado = usuarioRepository.existsByLogin(usuarioForm.getLogin());
+		if(temLoginCadastrado) {
+			throw new DataIntegrityViolationException("Login indisponível!");
+		}
 		Usuario usuario = modelMapper.map(usuarioForm, Usuario.class);
 		
 		Perfil perfil = perfilRepository.getById(usuarioForm.getPerfilId());

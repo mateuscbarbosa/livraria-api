@@ -6,4 +6,6 @@ import br.com.alura.livraria.modelo.Autor;
 
 public interface AutorRepository extends JpaRepository<Autor, Long>{
 
+	boolean existsByEmail(String email);
+
 }
