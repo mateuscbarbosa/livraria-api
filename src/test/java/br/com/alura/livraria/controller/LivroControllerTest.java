@@ -52,7 +52,7 @@ class LivroControllerTest {
 				.post("/livros")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(json))
-		.andExpect(MockMvcResultMatchers.status().isNotFound()); //talvez devesse ser um bad request 400
+		.andExpect(MockMvcResultMatchers.status().isNotFound());
 	}
 	
 	@Test

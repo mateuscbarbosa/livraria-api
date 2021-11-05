@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.alura.livraria.dto.UsuarioAtualizacaoFormDto;
 import br.com.alura.livraria.dto.UsuarioFormDto;
+import br.com.alura.livraria.dto.UsuarioOutputDetalhadoDto;
 import br.com.alura.livraria.dto.UsuarioOutputDto;
 import br.com.alura.livraria.modelo.Perfil;
 import br.com.alura.livraria.modelo.Usuario;
@@ -76,11 +77,11 @@ public class UsuarioService {
 		usuarioRepository.deleteById(id);
 	}
 
-	public UsuarioOutputDto detalhar(Long id) {
+	public UsuarioOutputDetalhadoDto detalhar(Long id) {
 		Usuario usuario = usuarioRepository.findById(id)
 											.orElseThrow(() -> new EntityNotFoundException());
 		
-		return modelMapper.map(usuario, UsuarioOutputDto.class);
+		return modelMapper.map(usuario, UsuarioOutputDetalhadoDto.class);
 	}
 
 }

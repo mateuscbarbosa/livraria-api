@@ -53,6 +53,11 @@ public class Usuario implements UserDetails{
 		this.senha = senha;
 	}
 	
+	public Usuario(String nome, String login) {
+		this.nome = nome;
+		this.login = login;
+	}
+	
 	public void atualizarInformacoes(String nome, String login, String senha) { //tentar colocar os perfis
 		this.nome = nome;
 		this.login = login;

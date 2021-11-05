@@ -22,6 +22,7 @@ import com.sun.istack.NotNull;
 
 import br.com.alura.livraria.dto.UsuarioAtualizacaoFormDto;
 import br.com.alura.livraria.dto.UsuarioFormDto;
+import br.com.alura.livraria.dto.UsuarioOutputDetalhadoDto;
 import br.com.alura.livraria.dto.UsuarioOutputDto;
 import br.com.alura.livraria.service.UsuarioService;
 import io.swagger.annotations.Api;
@@ -68,8 +69,8 @@ public class UsuarioController {
 	
 	@GetMapping("/{id}")
 	@ApiOperation("Usuário detalhado")
-	public ResponseEntity<UsuarioOutputDto> detalhar(@PathVariable @NotNull Long id){
-		UsuarioOutputDto dto = service.detalhar(id);
+	public ResponseEntity<UsuarioOutputDetalhadoDto> detalhar(@PathVariable @NotNull Long id){
+		UsuarioOutputDetalhadoDto dto = service.detalhar(id);
 		
 		return ResponseEntity.ok(dto);
 	}
