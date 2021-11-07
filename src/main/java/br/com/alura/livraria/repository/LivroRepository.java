@@ -1,6 +1,7 @@
 package br.com.alura.livraria.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -20,4 +21,6 @@ public interface LivroRepository extends JpaRepository<Livro, Long>{
 	List<RelatorioLivroPorAutorOutputDto> relatorioLivrosPorAutor();
 	
 	boolean existsByAutorId(Long id);
+
+	Optional<Livro> findByTitulo(String titulo);
 }

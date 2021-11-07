@@ -59,7 +59,7 @@ class UsuarioControllerTest {
 		usuarioRepository.save(logado);
 		
 		Authentication authentication = new UsernamePasswordAuthenticationToken(logado, logado.getLogin());
-		this.token = tokenService.gerarToken(authentication);
+		this.token = "Bearer " + tokenService.gerarToken(authentication);
 	}
 	
 	@Test
@@ -70,7 +70,7 @@ class UsuarioControllerTest {
 				.post("/usuarios")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(json)
-				.header("Authorization","Bearer " + token))
+				.header("Authorization", token))
 			.andExpect(MockMvcResultMatchers.status().isBadRequest());
 	}
 	
@@ -84,7 +84,7 @@ class UsuarioControllerTest {
 				.post("/usuarios")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(json)
-				.header("Authorization", "Bearer " + token))
+				.header("Authorization", token))
 			.andExpect(MockMvcResultMatchers.status().isBadRequest());
 	}
 	
@@ -99,7 +99,7 @@ class UsuarioControllerTest {
 				.post("/usuarios")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(json)
-				.header("Authorization", "Bearer " + token))
+				.header("Authorization", token))
 			.andExpect(MockMvcResultMatchers.status().isCreated())
 			.andExpect(MockMvcResultMatchers.header().exists("Location"))
 			.andExpect(MockMvcResultMatchers.content().json(jsonEsperado));
@@ -115,7 +115,7 @@ class UsuarioControllerTest {
 				.put("/usuarios")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(json)
-				.header("Authorization", "Bearer" + token))
+				.header("Authorization", token))
 			.andExpect(MockMvcResultMatchers.status().isBadRequest());
 	}
 	
@@ -139,7 +139,7 @@ class UsuarioControllerTest {
 				.put("/usuarios")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(jsonAtualizar)
-				.header("Authorization", "Bearer " + token))
+				.header("Authorization", token))
 			.andExpect(MockMvcResultMatchers.status().isOk());
 	}
 	
@@ -149,7 +149,7 @@ class UsuarioControllerTest {
 		
 		mvc.perform(MockMvcRequestBuilders
 				.delete("/usuarios/"+json)
-				.header("Authorization", "Bearer " + token))
+				.header("Authorization", token))
 			.andExpect(MockMvcResultMatchers.status().isNotFound());
 	}
 	
@@ -164,7 +164,7 @@ class UsuarioControllerTest {
 		
 		mvc.perform(MockMvcRequestBuilders
 				.delete("/usuarios/"+usuario.getId())
-				.header("Authorization", "Bearer " + token))
+				.header("Authorization", token))
 			.andExpect(MockMvcResultMatchers.status().isNoContent());
 	}
 
