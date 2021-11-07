@@ -55,6 +55,7 @@ public class UsuarioService {
 		
 		String senha = new Random().nextInt(999999) + "";
 		usuario.setSenha(bCryptPasswordEncoder.encode(senha));
+		usuario.setId(null);
 		
 		usuarioRepository.save(usuario);
 				
