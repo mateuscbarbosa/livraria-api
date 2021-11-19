@@ -40,13 +40,13 @@ class LivroRepositoryTest {
 		Autor a3 = new Autor("Terceiro Autor", "terceiro@email.com", LocalDate.now(),"Algum currículo para teste");
 		em.persist(a3);
 		
-		Livro l1 = new Livro("Um título do livro", LocalDate.now(), 101, a1);
+		Livro l1 = new Livro("Um título do livro1", LocalDate.now(), 101, a1);
 		em.persist(l1);
-		Livro l2 = new Livro("Um título do livro", LocalDate.now(), 101, a1);
+		Livro l2 = new Livro("Um título do livro2", LocalDate.now(), 101, a1);
 		em.persist(l2);
-		Livro l3 = new Livro("Um título do livro", LocalDate.now(), 101, a2);
+		Livro l3 = new Livro("Um título do livro3", LocalDate.now(), 101, a2);
 		em.persist(l3);
-		Livro l4 = new Livro("Um título do livro", LocalDate.now(), 101, a3);
+		Livro l4 = new Livro("Um título do livro4", LocalDate.now(), 101, a3);
 		em.persist(l4);
 		
 		List <RelatorioLivroPorAutorOutputDto> relatorio = repository.relatorioLivrosPorAutor();
