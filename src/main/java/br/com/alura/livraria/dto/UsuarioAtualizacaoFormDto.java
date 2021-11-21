@@ -21,8 +21,8 @@ public class UsuarioAtualizacaoFormDto extends UsuarioFormDto{
 	@NotBlank
 	private String senha;
 
-	public UsuarioAtualizacaoFormDto(String nome, String login, Long perfilId, Long id, @NotBlank String senha) {
-		super(nome, login, perfilId);
+	public UsuarioAtualizacaoFormDto(String nome, String login, Long perfilId, Long id, String senha, String email) {
+		super(nome, login, perfilId, email);
 		this.id = id;
 		this.senha = senha;
 	}

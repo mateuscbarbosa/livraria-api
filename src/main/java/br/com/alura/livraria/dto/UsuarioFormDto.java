@@ -1,5 +1,6 @@
 package br.com.alura.livraria.dto;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
@@ -25,4 +26,8 @@ public class UsuarioFormDto {
 	@NotNull
 	@JsonAlias("perfil_id")
 	private Long perfilId;
+	
+	@NotBlank
+	@Email
+	private String email;
 }

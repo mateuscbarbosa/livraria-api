@@ -39,6 +39,7 @@ public class Usuario implements UserDetails{
 	private String nome;
 	private String login;
 	private String senha;
+	private String email;
 	
 	@ManyToMany
 	@JoinTable(name = "perfis_usuarios",
@@ -58,10 +59,11 @@ public class Usuario implements UserDetails{
 		this.login = login;
 	}
 	
-	public void atualizarInformacoes(String nome, String login, String senha) { //tentar colocar os perfis
+	public void atualizarInformacoes(String nome, String login, String senha, String email) {
 		this.nome = nome;
 		this.login = login;
 		this.senha = senha;
+		this.email = email;
 	}
 	
 	public void adicionarPerfil(Perfil perfil) {

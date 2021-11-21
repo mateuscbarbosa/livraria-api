@@ -17,6 +17,7 @@ import br.com.alura.livraria.dto.UsuarioAtualizacaoFormDto;
 import br.com.alura.livraria.dto.UsuarioFormDto;
 import br.com.alura.livraria.dto.UsuarioOutputDetalhadoDto;
 import br.com.alura.livraria.dto.UsuarioOutputDto;
+import br.com.alura.livraria.infra.EnviadorDeEmail;
 import br.com.alura.livraria.modelo.Perfil;
 import br.com.alura.livraria.modelo.Usuario;
 import br.com.alura.livraria.repository.PerfilRepository;
@@ -36,6 +37,9 @@ public class UsuarioService {
 	
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	@Autowired
+	private EnviadorDeEmail enviadorDeEmail;
 	
 	public Page<UsuarioOutputDto> listar(Pageable paginacao) {
 		Page<Usuario> usuarios = usuarioRepository.findAll(paginacao);
@@ -58,6 +62,14 @@ public class UsuarioService {
 		usuario.setId(null);
 		
 		usuarioRepository.save(usuario);
+		
+		String destinataro = usuario.getEmail();
+		String assunto = "Livraria - Bem vindo(a)!";
+		String mensagem = String.format("Olá %s\n\n"
+				+ "Seguem seus dados de acesso ao sistema.\n\n"
+				+ "Login:%s\n"
+				+ "Senha:%s", usuario.getNome(),usuario.getLogin(),senha);
+		enviadorDeEmail.enviarEmail(destinataro, assunto, mensagem);
 				
 		return modelMapper.map(usuario, UsuarioOutputDto.class);
 	}
@@ -68,7 +80,8 @@ public class UsuarioService {
 		
 		usuario.atualizarInformacoes(usuarioForm.getNome(),
 									 usuarioForm.getLogin(),
-									 bCryptPasswordEncoder.encode(usuarioForm.getSenha()));
+									 bCryptPasswordEncoder.encode(usuarioForm.getSenha()),
+									 usuarioForm.getEmail());
 		
 		return modelMapper.map(usuario, UsuarioOutputDto.class);
 	}

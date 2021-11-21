@@ -76,7 +76,7 @@ class UsuarioControllerTest {
 	
 	@Test
 	void naoDeveriaCadastrarComLoginJaExistente() throws Exception {
-		UsuarioFormDto novoUsuario = new UsuarioFormDto("Teste de Login", "testedeteste", 2l);
+		UsuarioFormDto novoUsuario = new UsuarioFormDto("Teste de Login", "testedeteste", 2l,"algum@email.com");
 		
 		String json = objectMapper.writeValueAsString(novoUsuario);
 		
@@ -90,7 +90,7 @@ class UsuarioControllerTest {
 	
 	@Test
 	void deveriaCadastrarComDadosCompletos() throws Exception{
-		UsuarioFormDto novoUsuario = new UsuarioFormDto("Teste de Teste", "teste", 1l);
+		UsuarioFormDto novoUsuario = new UsuarioFormDto("Teste de Teste", "teste", 1l,"algum2@email.com");
 		
 		String json = objectMapper.writeValueAsString(novoUsuario);
 		String jsonEsperado = "{\"nome\": \"Teste de Teste\", \"login\": \"teste\"}";
@@ -132,7 +132,8 @@ class UsuarioControllerTest {
 																				usuario.getLogin(),
 																				1l,
 																				usuario.getId(),
-																				"654321");
+																				"654321",
+																				"atualizado@email.com");
 		String jsonAtualizar = objectMapper.writeValueAsString(usuarioForm);
 		
 		mvc.perform(MockMvcRequestBuilders

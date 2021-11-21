@@ -13,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import br.com.alura.livraria.dto.UsuarioFormDto;
 import br.com.alura.livraria.dto.UsuarioOutputDto;
+import br.com.alura.livraria.infra.EnviadorDeEmail;
 import br.com.alura.livraria.modelo.Usuario;
 import br.com.alura.livraria.repository.PerfilRepository;
 import br.com.alura.livraria.repository.UsuarioRepository;
@@ -27,6 +28,9 @@ class UsuarioServiceTest {
 	private PerfilRepository perfilRepository;
 	
 	@Mock
+	private EnviadorDeEmail enviadorDeEmail;
+	
+	@Mock
 	private ModelMapper modelMapper;
 	
 	@Mock
@@ -37,7 +41,7 @@ class UsuarioServiceTest {
 	
 	@Test
 	void deveriaCadastrarUmUsuario() {
-		UsuarioFormDto usuarioForm = new UsuarioFormDto("Teste", "teste", 1l);
+		UsuarioFormDto usuarioForm = new UsuarioFormDto("Teste", "teste", 1l,"teste@email.com");
 		
 		Usuario usuario = new Usuario(usuarioForm.getNome(),usuarioForm.getLogin());
 		
